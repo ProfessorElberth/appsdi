@@ -6,7 +6,16 @@ public class CalculadoraTeste {
 	
 	private static float numeroA;
 	private static float numeroB;
+	private static int operacao;
+	private static String nome; 
 	
+	private static final int SOMA = 1;
+	private static final int SUBTRACAO = 2;
+	private static final int DIVISAO = 3;
+	private static final int MULTIPLICACAO = 4;
+	private static final String[] OPERACAO_NOME = {"Soma", "Subtração", "Divisão", "Multiplicação"};
+	private static final String[] OPERACAO_SINAL = {"+", "-", "/", "*"};
+
 	private static float soma() {
 		return numeroA + numeroB;
 	}
@@ -19,11 +28,6 @@ public class CalculadoraTeste {
 	private static float multiplicacao(){
 		return numeroA * numeroB;
 	}
-	
-	private static final int SOMA = 1;
-	private static final int SUBTRACAO = 2;
-	private static final int DIVISAO = 3;
-	private static final int MULTIPLICACAO = 4;
 	
 	private static float calcular(int oper){
 		
@@ -53,39 +57,53 @@ public class CalculadoraTeste {
 		
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println(SOMA + " - soma");
-		System.out.println(SUBTRACAO + " - subtração");
-		System.out.println(DIVISAO + " - divisão");
-		System.out.println(MULTIPLICACAO + " - multiplicação");
+		System.out.println(SOMA + " - " + OPERACAO_NOME[0]);
+		System.out.println(SUBTRACAO + " - " + OPERACAO_NOME[1]);
+		System.out.println(DIVISAO + " - " + OPERACAO_NOME[2]);
+		System.out.println(MULTIPLICACAO + " - " + OPERACAO_NOME[3]);
 
 		System.out.print("Selecione a opçao desejada: ");
 
 		return in.nextInt(); 
 	}
 	
+	private static void impressao(){
+
+		System.out.printf("[%s] %s: %.2f = %.2f %s %.2f\n", 
+				nome, 
+				OPERACAO_NOME[operacao - 1], 
+				calcular(operacao), 
+				numeroA, 
+				OPERACAO_SINAL[operacao - 1], 
+				numeroB
+			);
+	}
+	
+	private static boolean validaOperacao(){
+
+		switch (operacao) {
+		case SOMA:			
+		case SUBTRACAO:			
+		case DIVISAO:			
+		case MULTIPLICACAO:			
+			return true;
+
+		default:
+			return false;
+		}
+	}
+	
 	public static void main(String[] args) {
 
 		numeroA = Float.valueOf(args[0]);
 		numeroB = Float.valueOf(args[1]);				
-		String nome = args[2];
-
-		int operacao = definirOperacao(args);
+		nome = args[2];
 		
-		float resultado = calcular(operacao);
+		operacao = definirOperacao(args);
 		
-		if(operacao == SOMA) {
-			System.out.printf("[%s] Soma: %.2f = %.2f + %.2f\n", nome, resultado, numeroA, numeroB);
-
-		} else if(operacao == SUBTRACAO) {
-			System.out.printf("[%s] Subtração: %.2f = %.2f + %.2f\n", nome, resultado, numeroA, numeroB);
-			
-		} else if(operacao == DIVISAO) {
-			System.out.printf("[%s] Divisão: %.2f = %.2f + %.2f\n", nome, resultado, numeroA, numeroB);
-			
-		} else if(operacao == MULTIPLICACAO) {
-			System.out.printf("[%s] Multiplicação: %.2f = %.2f + %.2f\n", nome, resultado, numeroA, numeroB);
-
-		} else {
+		if(validaOperacao()) {
+			impressao();
+		}else {
 			System.out.println(nome +", a sua operação está inválida: "+operacao+"!!!");
 		}
 	}
