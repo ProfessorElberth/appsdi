@@ -6,6 +6,7 @@ public class Calculadora {
 	private float numeroB;
 	private int operacao;
 	private String nome;
+<<<<<<< HEAD
 
 	public void impressao() {
 
@@ -71,6 +72,58 @@ public class Calculadora {
 	}
 	
 	private float multiplicar() {
+=======
+	
+	public boolean validaOperacao(){
+		switch (operacao) {
+		case Constante.SOMA:			
+		case Constante.SUBTRACAO:			
+		case Constante.DIVISAO:			
+		case Constante.MULTIPLICACAO:			
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	public void impressao(){
+		System.out.printf("[%s] %s: %.2f = %.2f %s %.2f\n", 
+				nome, 
+				Constante.OPERACAO_NOME[operacao - 1], 
+				calcular(operacao), 
+				numeroA, 
+				Constante.OPERACAO_SINAL[operacao - 1], 
+				numeroB
+			);
+	}
+		
+	private float calcular(int oper){
+		
+		switch (oper) {
+		case Constante.SOMA:
+			return soma();
+		case Constante.SUBTRACAO:			
+			return subtracao();
+		case Constante.DIVISAO:			
+			return divisao();
+		case Constante.MULTIPLICACAO:			
+			return multiplicacao();
+		}		
+
+		return 0;
+	}	
+	
+	private float soma() {
+		return numeroA + numeroB;
+	}
+	private float subtracao(){
+		return numeroA - numeroB;
+	}
+	private float divisao(){
+		return numeroA / numeroB;
+	}
+	private float multiplicacao(){
+>>>>>>> 59dbddabba5676a66a236a7d413889210619a481
 		return numeroA * numeroB;
 	}
 	
@@ -97,5 +150,9 @@ public class Calculadora {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+<<<<<<< HEAD
 	}	
+=======
+	}
+>>>>>>> 59dbddabba5676a66a236a7d413889210619a481
 }
