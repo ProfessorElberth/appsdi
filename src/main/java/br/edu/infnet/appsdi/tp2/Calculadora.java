@@ -6,73 +6,6 @@ public class Calculadora {
 	private float numeroB;
 	private int operacao;
 	private String nome;
-<<<<<<< HEAD
-
-	public void impressao() {
-
-		if(validaOperacao()) {
-			
-			System.out.printf("[%s] %s: %.2f = %.2f %s %.2f\n", 
-					nome, 
-					Constante.OPERACAO_TEXTO[operacao-1], 
-					calcular(), 
-					numeroA, 
-					Constante.OPERACAO_SINAL[operacao-1], 
-					numeroB
-				);
-		}else {
-			System.out.println(nome +", a sua operação está inválida: "+operacao+"!!!");
-		}
-		
-	}
-	
-	private boolean validaOperacao() {
-
-		switch (operacao) {
-		case Constante.SOMA:
-		case Constante.SUBTRACAO:
-		case Constante.DIVISAO:
-		case Constante.MULTIPLICACAO:
-			return true;
-		}
-
-		return false;
-	}
-	
-	private float calcular() {
-
-		switch (operacao) {
-			case Constante.SOMA:
-				return somar();
-
-			case Constante.SUBTRACAO:
-				return subtrair();
-
-			case Constante.DIVISAO:
-				return dividir();
-
-			case Constante.MULTIPLICACAO:
-				return multiplicar();
-
-			default:
-				return 0;
-		}
-	}
-	
-	private float somar() {
-		return numeroA + numeroB;
-	}
-	
-	private float subtrair() {
-		return numeroA - numeroB;
-	}
-
-	private float dividir() {
-		return numeroA / numeroB;
-	}
-	
-	private float multiplicar() {
-=======
 	
 	public boolean validaOperacao(){
 		switch (operacao) {
@@ -89,7 +22,7 @@ public class Calculadora {
 	public void impressao(){
 		System.out.printf("[%s] %s: %.2f = %.2f %s %.2f\n", 
 				nome, 
-				Constante.OPERACAO_NOME[operacao - 1], 
+				Constante.OPERACAO_TEXTO[operacao - 1], 
 				calcular(operacao), 
 				numeroA, 
 				Constante.OPERACAO_SINAL[operacao - 1], 
@@ -123,7 +56,6 @@ public class Calculadora {
 		return numeroA / numeroB;
 	}
 	private float multiplicacao(){
->>>>>>> 59dbddabba5676a66a236a7d413889210619a481
 		return numeroA * numeroB;
 	}
 	
@@ -150,9 +82,5 @@ public class Calculadora {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-<<<<<<< HEAD
 	}	
-=======
-	}
->>>>>>> 59dbddabba5676a66a236a7d413889210619a481
 }

@@ -23,7 +23,7 @@ public class Funcionario {
 	}
 	
 	public void impressao() {
-		System.out.println("Funcionário cadastrado com sucesso: "+this+"!!!");
+		System.out.println("Funcionário cadastrado com sucesso: " + this +"!!!");
 	}
 
 	@Override

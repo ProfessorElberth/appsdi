@@ -1,6 +1,5 @@
 package br.edu.infnet.appsdi.tp4;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class FuncionarioLoteTeste {
@@ -12,32 +11,80 @@ public class FuncionarioLoteTeste {
 		
 		final int QTDE = 3;
 		
-		String[] nomes = new String[QTDE];
+		Funcionario[] funcionarios = new Funcionario[QTDE];
+		
 		int idx = 0;
 		
-		do {			
+		do {
 			
-			if(idx < nomes.length) {
-				System.out.print("Informe o seu nome: ");
-				nomes[idx] = in.next();
-				
-				System.out.println("Funcionário cadastrado com sucesso: " + nomes[idx]);
-				
-				System.out.print("Deseja cadastrar um funcionário (S/N)? Resposta: ");
-				opcao = in.next();
-				
-				idx++;
-			}else {
-				System.out.println("Não é possível realizar um novo cadastramento!!");
+			int opcaoMenu = recuperarOpcaoMenu();
+			
+			switch (opcaoMenu) {
+			case 1:
+				if(idx < QTDE) {
+					Funcionario func = new Funcionario();
+					
+					System.out.print("Informe o seu nome: ");
+					func.setNome(in.next());
+					
+					System.out.print("Informe o seu e-mail: ");
+					func.setEmail(in.next());
+					
+					System.out.print("Informe o seu salario: ");
+					func.setSalario(in.nextFloat());
+
+					System.out.print("Informe a sua idade: ");
+					func.setIdade(in.nextInt());
+
+					func.impressao();
+					
+					System.out.print("Deseja continuar no sistema (S/N)? Resposta: ");
+					opcao = in.next();
+
+					funcionarios[idx] = func;
+					
+					idx++;
+				}else {
+					System.out.println("Não é possível realizar um novo cadastramento!!");
+				}
+				break;
+
+			case 2:
+				if(idx > 0) {
+					System.out.println("Listagem geral de funcionários:");
+					for(int i = 0; i < idx; i++) {
+						System.out.println("- " + funcionarios[i]);
+					}
+				} else {
+					System.out.println("Nenhum funcionário cadastrado!!!");
+				}
+				opcao = "S";
+				break;
+
+			case 9:
 				opcao = "N";
+				break;
+				
+			default:
+				System.out.println("Opção inválida!!! Informe uma nova opção!");
+				opcao = "S";
+				break;
 			}
-			
+						
 		} while ("S".equalsIgnoreCase(opcao));
-		
-		System.out.println(Arrays.toString(nomes));
 		
 		System.out.println("Processamento finalizado!!!");
 		
 		in.close();		
+	}
+
+	private static int recuperarOpcaoMenu() {
+		System.out.println("Cadastramento de funcionários:");
+		System.out.println("1 - Incluir");
+		System.out.println("2 - Exibir todos");
+		System.out.println("9 - Sair");
+		System.out.print("Escolha a sua opção: ");
+
+		return new Scanner(System.in).nextInt();
 	}
 }
