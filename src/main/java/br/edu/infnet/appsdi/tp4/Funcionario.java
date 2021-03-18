@@ -1,6 +1,6 @@
 package br.edu.infnet.appsdi.tp4;
 
-public class Funcionario {
+public abstract class Funcionario {
 
 	private String nome;
 	private String email;
@@ -21,14 +21,20 @@ public class Funcionario {
 		this.salario = salario;
 		this.idade = idade;
 	}
+
+	public abstract float calcularSalario();
 	
 	public void impressao() {
-		System.out.println("Funcionário cadastrado com sucesso: " + this +"!!!");
+		System.out.println("Funcionário cadastrado com sucesso: " + this +": "+this.calcularSalarioLiquido()+"!!!");
+	}
+	
+	private float calcularSalarioLiquido(){
+		return salario + idade * Constante.VL_IDADE;
 	}
 
 	@Override
 	public String toString() {
-		return nome+" - "+email+" - "+salario+" - "+idade;
+		return nome+";"+email+";"+salario+";"+idade;
 	}
 	
 	public String getNome() {
