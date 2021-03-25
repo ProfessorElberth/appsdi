@@ -2,6 +2,7 @@ package br.edu.infnet.appsdi.tp4;
 
 public abstract class Funcionario {
 
+	private int id;
 	private String nome;
 	private String email;
 	private float salario;
@@ -34,9 +35,15 @@ public abstract class Funcionario {
 
 	@Override
 	public String toString() {
-		return nome+";"+email+";"+salario+";"+idade;
+		return id+";"+nome+";"+email+";"+salario+";"+idade;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
